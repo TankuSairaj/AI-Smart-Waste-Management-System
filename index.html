@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI-Assisted Smart Waste Management</title>
+<meta name="description" content="AI-assisted waste detection, monitoring and recycling guidance for college campuses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav" id="top">
+  <a class="brand" href="#home" aria-label="Smart Waste home">
+    <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#2f9e5b"/><path d="M9 21c0-7 5-11 14-12-1 8-5 13-12 13" fill="#fff"/><path d="M9 24c2-5 5-8 9-10" stroke="#12372a" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+    <span>Smart Waste</span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <nav id="navMenu">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#detection">AI Detection</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#reports">Waste Reports</a>
+    <a href="#guide">Recycling Guide</a>
+    <a href="#contact">Contact</a>
+    <span id="authArea"></span>
+  </nav>
+</header>
+
+<main>
+<!-- HOME -->
+<section class="hero view" id="home">
+  <div class="hero-text">
+    <p class="pill">🌿 AI-powered campus waste management</p>
+    <h1>AI-Assisted<br><span>Smart Waste Management</span></h1>
+    <p class="lead">Spot waste on campus from a photo, map where it builds up, and guide every block and hostel toward proper recycling.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#detection">Start Detection</a>
+      <a class="btn btn-ghost" href="#dashboard">View Dashboard</a>
+    </div>
+  </div>
+  <div class="hero-art" aria-hidden="true"><svg viewBox="0 0 520 420" role="img">
+      <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dff3e6"/><stop offset="1" stop-color="#f6fbf7"/></linearGradient></defs>
+      <rect width="520" height="420" rx="28" fill="url(#sky)"/>
+      <circle cx="430" cy="80" r="34" fill="#fff4c2"/>
+      <path d="M0 330 Q130 290 260 320 T520 305 V420 H0Z" fill="#bfe3cb"/>
+      <path d="M0 360 Q150 330 300 355 T520 345 V420 H0Z" fill="#8fcca6"/>
+      <rect x="70" y="170" width="190" height="150" rx="8" fill="#fff" stroke="#cfe3d5"/>
+      <rect x="70" y="150" width="190" height="26" rx="8" fill="#12372a"/>
+      <g fill="#dff3e6"><rect x="88" y="195" width="28" height="34" rx="4"/><rect x="132" y="195" width="28" height="34" rx="4"/><rect x="176" y="195" width="28" height="34" rx="4"/><rect x="220" y="195" width="24" height="34" rx="4"/><rect x="88" y="250" width="28" height="34" rx="4"/><rect x="176" y="250" width="28" height="34" rx="4"/></g>
+      <rect x="140" y="268" width="36" height="52" rx="4" fill="#2f9e5b"/>
+      <rect x="290" y="210" width="150" height="110" rx="8" fill="#fff" stroke="#cfe3d5"/>
+      <rect x="290" y="192" width="150" height="24" rx="8" fill="#2f9e5b"/>
+      <g fill="#dff3e6"><rect x="308" y="236" width="26" height="30" rx="4"/><rect x="350" y="236" width="26" height="30" rx="4"/><rect x="392" y="236" width="26" height="30" rx="4"/></g>
+      <circle cx="46" cy="270" r="26" fill="#2f9e5b"/><rect x="43" y="290" width="6" height="34" fill="#12372a"/>
+      <circle cx="480" cy="285" r="22" fill="#47b374"/><rect x="477" y="302" width="6" height="26" fill="#12372a"/>
+      <!-- waste on ground -->
+      <rect x="268" y="326" width="16" height="22" rx="4" fill="#5aa9e6"/>
+      <rect x="296" y="334" width="22" height="14" rx="2" fill="#e8dcc0"/>
+      <ellipse cx="340" cy="342" rx="12" ry="8" fill="#9a6b3f"/>
+      <!-- detection boxes -->
+      <g class="box b1"><rect x="258" y="318" width="34" height="38" rx="5"/><text x="258" y="310">plastic</text></g>
+      <g class="box b2"><rect x="288" y="326" width="38" height="28" rx="5"/><text x="288" y="372">paper</text></g>
+      <g class="box b3"><rect x="324" y="330" width="34" height="24" rx="5"/><text x="324" y="316">food</text></g>
+    </svg></div>
+  <div class="wrap features">
+    <h2>Intelligent waste management for your campus</h2>
+    <p class="sub">Detection, mapping and recycling guidance in one platform.</p>
+    <div class="grid g3">
+      <a class="card feat" href="#detection"><div class="ico">🔎</div><h3>AI Detection</h3><p>Upload a photo and a vision model lists the waste it can see, by category.</p></a>
+      <a class="card feat" href="#reports"><div class="ico">📍</div><h3>Reports and Map</h3><p>Pin overflowing bins and litter on a campus map so teams know where to go.</p></a>
+      <a class="card feat" href="#dashboard"><div class="ico">📊</div><h3>Analytics Dashboard</h3><p>Totals, recyclable share, hotspots and history, exportable as CSV.</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section view" id="about">
+  <div class="wrap">
+    <h2>About the project</h2>
+    <p class="sub">Colleges produce waste in classrooms, canteens, hostels and sports grounds. Without a clear picture of where it collects, cleanup is slow and recycling is inconsistent. This system brings detection, reporting and guidance into one place.</p>
+    <div class="grid g3">
+      <article class="card"><div class="ico">🔎</div><h3>Identify</h3><p>Upload a photo of a campus area and let an AI vision model list the waste it can see, with a category for each item.</p></article>
+      <article class="card"><div class="ico">📍</div><h3>Locate</h3><p>Every detection and report is tied to a named place, such as Canteen Block or Hostel Gate, so hotspots stand out.</p></article>
+      <article class="card"><div class="ico">♻️</div><h3>Recycle</h3><p>Plain-language instructions for plastic, paper, glass, metal and organic waste help people sort at the source.</p></article>
+    </div>
+    <div class="benefits">
+      <div><strong>Faster cleanup</strong><span>Maintenance teams see which locations need attention first.</span></div>
+      <div><strong>Better recycling</strong><span>Correct sorting means less contamination and more reuse.</span></div>
+      <div><strong>Student participation</strong><span>Anyone can report an overflowing bin in under a minute.</span></div>
+      <div><strong>Data for decisions</strong><span>Charts show which waste types dominate and where.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DETECTION -->
+<section class="section alt view" id="detection">
+  <div class="wrap">
+    <h2>AI waste detection</h2>
+    <p class="sub">Upload a photo and enter where it was taken. The image is analysed on the server by a vision model. If the server has no API key configured, no AI analysis is run and you can tag the waste manually instead.</p>
+
+    <div class="split">
+      <div class="card">
+        <div class="seg" id="seg"><button type="button" class="on" data-mode="upload">Upload</button><button type="button" data-mode="camera">Camera</button></div>
+        <label class="drop" id="drop" for="imageInput">
+          <input type="file" id="imageInput" accept="image/*" hidden>
+          <img id="preview" alt="Preview of uploaded waste area" hidden>
+          <div id="dropText"><div class="ico big">📷</div><strong>Choose or drop an image</strong><span>JPG, PNG or WebP, up to 5 MB</span></div>
+        </label>
+        <p class="err" id="imgErr" role="alert"></p>
+        <div class="field"><label for="detLocation">Location name</label><input id="detLocation" type="text" placeholder="e.g. Canteen Block, rear entrance"><p class="err" id="locErr" role="alert"></p></div>
+        <p class="pin pinStatus"></p>
+        <div class="row">
+          <button class="btn btn-primary" id="analyzeBtn" type="button">Analyze Waste</button>
+          <button class="btn btn-ghost" id="clearBtn" type="button">Clear</button>
+        </div>
+        <p class="api-note"><span class="badge" id="apiBadge">Checking...</span> The AI key is kept on the server, never in the browser.</p>
+      </div>
+
+      <div class="card result" id="resultCard" aria-live="polite">
+        <div id="resultEmpty" class="empty"><h3 style="text-align:left">Analysis results</h3><div class="ico big">♻️</div><p>Upload or capture an image to see the analysis</p><ol class="steps"><li>Take a photo or upload an image</li><li>AI identifies the visible waste</li><li>Get cleaning and collection tips</li><li>See it on the dashboard and map</li></ol></div>
+        <div id="resultBody" hidden></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD -->
+<section class="section view" id="dashboard">
+  <div class="wrap">
+    <h2>Waste monitoring dashboard</h2>
+    <p class="sub">Figures combine saved detections and submitted reports stored in this browser. Entries marked sample are starter data for the demo.</p>
+    <div class="grid g4 stats">
+      <div class="card stat"><span>Total waste items</span><strong id="sTotal">0</strong></div>
+      <div class="card stat"><span>Recyclable</span><strong id="sRec">0</strong><em id="sRecPct"></em></div>
+      <div class="card stat"><span>Non-recyclable</span><strong id="sNon">0</strong><em id="sNonPct"></em></div>
+      <div class="card stat"><span>Reported locations</span><strong id="sLoc">0</strong></div>
+    </div>
+    <div class="grid g2">
+      <div class="card"><h3>Waste by category</h3><div class="chart"><canvas id="catChart"></canvas></div></div>
+      <div class="card"><h3>Recyclable and non-recyclable</h3><div class="chart"><canvas id="recChart"></canvas></div></div>
+    </div>
+    <div class="grid g2">
+      <div class="card"><div class="between"><h3>Alerts</h3><span class="tag">Latest reports</span></div><div id="alertList" class="alerts"></div></div>
+      <div class="card"><div class="between"><h3>Top hotspots</h3><span class="tag">Items per location</span></div><div id="hotList"></div></div>
+    </div>
+    <div class="card">
+      <div class="between"><h3>Recent detection history</h3><span class="row"><button class="btn btn-small" id="exportHistory" type="button">Export CSV</button><button class="btn btn-small btn-ghost" id="clearHistory" type="button">Clear history</button></span></div>
+      <div class="table-wrap"><table><thead><tr><th>Date</th><th>Location</th><th>Waste found</th><th>Source</th></tr></thead><tbody id="historyBody"></tbody></table></div>
+    </div>
+  </div>
+</section>
+
+<!-- REPORTS -->
+<section class="section alt view" id="reports">
+  <div class="wrap">
+    <h2>Waste reports</h2>
+    <p class="sub">See an overflowing bin or litter on the grounds? Report it so it can be cleared. Click the map to drop a pin and it is saved with your next report or detection.</p>
+    <div class="card" style="margin-bottom:24px">
+      <div class="between"><h3>Campus waste map</h3><span class="row"><button class="btn btn-small" id="gpsBtn" type="button">Use my location</button><button class="btn btn-small btn-ghost" id="clearPin" type="button">Clear pin</button></span></div>
+      <p class="pin pinStatus"></p>
+      <div id="mapEl" role="application" aria-label="Campus waste map"></div>
+      <p class="pin" style="margin:10px 0 0">Marker colour shows the waste type. Sample markers sit around a demo point.</p>
+    </div>
+    <div class="split">
+      <form class="card" id="reportForm" novalidate>
+        <div class="field"><label for="rLocation">Location name</label><input id="rLocation" type="text" placeholder="e.g. Library lawn"><p class="err"></p></div>
+        <div class="field"><label for="rType">Waste type</label>
+          <select id="rType"><option value="">Select a type</option><option>Plastic</option><option>Paper</option><option>Food waste</option><option>Metal</option><option>Glass</option><option>Mixed</option></select><p class="err"></p></div>
+        <div class="field"><label for="rDesc">Description</label><textarea id="rDesc" rows="3" placeholder="What did you see, and how much?"></textarea><p class="err"></p></div>
+        <div class="field"><label for="rImage">Photo (optional)</label><input id="rImage" type="file" accept="image/*"><p class="err"></p></div>
+        <p class="pin pinStatus"></p>
+        <button class="btn btn-primary" type="submit">Submit report</button>
+        <p class="ok" id="reportOk" role="status"></p>
+      </form>
+      <div>
+        <div class="between"><h3>Submitted reports</h3><button class="btn btn-small" id="exportReports" type="button">Export CSV</button><select id="reportFilter" aria-label="Filter reports"><option value="all">All types</option><option>Plastic</option><option>Paper</option><option>Food waste</option><option>Metal</option><option>Glass</option><option>Mixed</option></select></div>
+        <div id="reportList" class="reports"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDE -->
+<section class="section view" id="guide">
+  <div class="wrap">
+    <h2>Recycling guide</h2>
+    <p class="sub">Choose a category to see what goes in, what stays out, and how to prepare it.</p>
+    <div class="tabs" role="tablist" id="guideTabs"></div>
+    <div class="card guide" id="guidePanel" role="tabpanel"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section alt view" id="contact">
+  <div class="wrap narrow">
+    <h2>Contact</h2>
+    <p class="sub">Questions, feedback or want to bring this to your department? Send a message.</p>
+    <form class="card" id="contactForm" novalidate>
+      <div class="field"><label for="cName">Name</label><input id="cName" type="text"><p class="err"></p></div>
+      <div class="field"><label for="cEmail">Email</label><input id="cEmail" type="email"><p class="err"></p></div>
+      <div class="field"><label for="cMsg">Message</label><textarea id="cMsg" rows="4"></textarea><p class="err"></p></div>
+      <button class="btn btn-primary" type="submit">Send message</button>
+      <p class="ok" id="contactOk" role="status"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap between">
+    <span>AI-Assisted Smart Waste Management and Recycling System</span>
+    <span>BTech college project</span>
+  </div>
+</footer>
+<dialog id="authDialog" aria-labelledby="authTitle">
+  <form id="authForm" novalidate>
+    <h3 id="authTitle">Log in</h3>
+    <div class="field" id="aNameField" hidden><label for="aName">Name</label><input id="aName" type="text" autocomplete="name"></div>
+    <div class="field"><label for="aEmail">Email</label><input id="aEmail" type="email" autocomplete="email"></div>
+    <div class="field"><label for="aPass">Password</label><input id="aPass" type="password" autocomplete="current-password"></div>
+    <p class="err" id="authErr" role="alert"></p>
+    <div class="row"><button class="btn btn-primary" id="authSubmit" type="submit">Log in</button><button class="btn btn-ghost" id="authCancel" type="button">Cancel</button></div>
+    <button class="link" id="authSwitch" type="button">New here? Create an account</button>
+  </form>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
